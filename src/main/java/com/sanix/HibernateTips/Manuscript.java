@@ -1,19 +1,16 @@
 package com.sanix.HibernateTips;
 
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
-public class Book {
+public class Manuscript {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="id", updatable=false, nullable=false)
     private Long id;
 
-    @OneToOne(mappedBy="book")
-    private Manuscript manuscript;
-
+    @OneToOne
+    @JoinColumn(name="fk_book")
+    private Book book;
 }
