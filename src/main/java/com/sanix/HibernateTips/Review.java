@@ -11,7 +11,5 @@ public class Review {
     @Column(name="id", updatable=false, nullable=false)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name="fk_book")
-    private Book book;
+
 }
