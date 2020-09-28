@@ -9,11 +9,23 @@ import java.util.List;
 public class Book {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="id", updatable=false, nullable=false)
     private Long id;
 
-    @OneToMany(mappedBy="book")
-    private List<Review> reviews=new ArrayList<>();
+    @ManyToMany
+    @JoinTable(
+            name="book_author",
+            joinColumns={@JoinColumn(name="fk_book")},
+            inverseJoinColumns = {@JoinColumn(name="fk_author")}
+    )
+    private List<Author> authors=new ArrayList<>();
 
+    public List<Author> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(List<Author> authors) {
+        this.authors = authors;
+    }
 }
