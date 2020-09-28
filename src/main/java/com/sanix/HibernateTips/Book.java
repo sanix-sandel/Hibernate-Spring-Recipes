@@ -8,12 +8,6 @@ import java.util.List;
 @Entity
 public class Book {
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name="id", updatable=false, nullable=false)
-    private Long id;
 
-    @OneToOne(mappedBy="book")
-    private Manuscript manuscript;
 
 }

@@ -6,10 +6,5 @@ import javax.persistence.*;
 public class Review {
 
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name="id", updatable=false, nullable=false)
-    private Long id;
-
 
 }
