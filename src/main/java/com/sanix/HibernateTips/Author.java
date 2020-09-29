@@ -15,11 +15,20 @@ public class Author{
   @Column
   private LocalDate dateOfBirth;
 
-  public int getCalculatedAge(){
-      //Calculate the value in a getter method
-      log.info("Calculate age");
-      return Period.between(dateOfBirth,
-                            LocalDate.now()).getYears();
+  @Column
+  private LocalDate dateOfBirth;
+
+  @Transient
+  private Integer age;
+
+  public int getAge(){//Using a transient entity attribute
+      if(this.age==null){
+          log.info("calculate age");
+          this.age=Period.between(dateOfBirth, LocalDate.now()).getYears();
+      }else{
+          log.info("Return cached value");
+      }
+      return age;
   }
 }
 
