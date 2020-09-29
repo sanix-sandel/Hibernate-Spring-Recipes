@@ -12,25 +12,12 @@ import java.time.Period;
 @Entity
 public class Author{
 
-  @Column
-  private LocalDate dateOfBirth;
-
-  @Column
-  private LocalDate dateOfBirth;
-
-  @Transient
-  private Integer age;
-
-  public int getAge(){//Using a transient entity attribute
-      if(this.age==null){
-          log.info("calculate age");
-          this.age=Period.between(dateOfBirth, LocalDate.now()).getYears();
-      }else{
-          log.info("Return cached value");
-      }
-      return age;
-  }
+    @PrePersist
+    private void initializeCreatedAt(){
+        this.createdAt=LocalDateTime.now();
+        log.info("Set createdAt to "+this.createdAt);
+    }
 }
-
-//How to cache calculated attribute in the entity
-//without storing it in the database
+//Initialize an entity attribute automatically before
+// it gets persisted. How to execute custom code before
+//Hibernate persists an entity
