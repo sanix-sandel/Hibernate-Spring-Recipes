@@ -7,5 +7,5 @@ import java.util.UUID;
 
 @Entity
 public class Author {
-
+    private AuthorStatus status;
 }
