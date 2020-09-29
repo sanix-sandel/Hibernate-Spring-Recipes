@@ -8,15 +8,18 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Author{
 
-    @PrePersist
-    private void initializeCreatedAt(){
-        this.createdAt=LocalDateTime.now();
-        log.info("Set createdAt to "+this.createdAt);
-    }
+   @ManyToMany
+   @JoinTable(name="BookAuthor", joinColumns={@JoinColumn(name="bookId", referencedColumnName="id")},
+                                inverseJoinColumns = {@JoinColumn(name="authorId",
+                                referencedColumnName="id")})
+   @OrderBy(value="lastName ASC")
+   private Set<Author> authors=new HashSet<Author>();
 }
 //Initialize an entity attribute automatically before
 // it gets persisted. How to execute custom code before
